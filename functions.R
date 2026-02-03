@@ -51,6 +51,11 @@ BF_RD_CC <- function(count_ldn, count_lin, alpha_risk, alpha_nonrisk, beta_risk,
 ## Functions used to apply the TADA framework
 
 ################################################################################################
+### functions downloaded from https://github.com/talkowski-lab/TADA_2022/blob/main/functions.R
+################################################################################################
+
+
+################################################################################################
 ### Wrapper function to obtain de novo Bayes Factors for SNV/indels, over a list of genes for a given variant type
 ### Makes calls to log.bayes.factor.dn for each gene
 ## Input: 
@@ -83,10 +88,6 @@ BF_DN_SNV <- function(count_case, count_con, n_case, n_con, mut, gamma.dn, beta.
   BF[is.na(BF)] <- 1
   return(BF)
 }
-
-################################################################################################
-### functions downloaded from https://github.com/talkowski-lab/TADA_2022/blob/main/functions.R
-################################################################################################
 
 ################################################################################################
 ### log Bayes factor calculation for de novo variant contribution to a gene
