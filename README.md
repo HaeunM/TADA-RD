@@ -49,9 +49,6 @@ The pipeline integrates family-based PTV counts, simulated or user-provided case
    Published ASC de novo and inherited PTV counts (Fu et al., 2022) are merged with gene-level covariates and mutation-rate priors.
 2. **Aggregate simulated or user-provided case–control variants**
    Variant-level PTV data are collapsed into gene-level counts for cases and controls.
-3. **Infer de novo vs. inherited variants in cases**
-   A trained probabilistic classifier assigns a posterior probability of de novo origin to each variant.
-   Variants exceeding a fixed probability threshold (default: 0.7) are classified as de novo.
 4. **Construct gene-level mutation counts**
    For each gene:
    - `case`: total PTVs in cases
