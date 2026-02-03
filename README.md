@@ -2,7 +2,7 @@
 
 This repository provides a **reproducible analysis pipeline** for gene-level risk inference using three Bayesian frameworks:
 
-- **TADA-family ** 
+- **TADA-family** 
 - **TADA-CC** 
 - **TADA-RD** 
 
