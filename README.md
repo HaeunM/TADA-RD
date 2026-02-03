@@ -85,8 +85,7 @@ n_control = 2500
 
 ### What these mean
 
-- `n_asc_trio_case`, `n_asc_trio_control`: number of probands and siblings **in the family-based (ASC trio) dataset** used for `fu_suppl_table5.xlsx`. 
-- These parameters are used in the **family-based TADA** and therefore affect :`BF_TADA_family`, `BF_TADA_CC` and `BF_TADA_RD`
+- `n_asc_trio_case`, `n_asc_trio_control`: number of probands and siblings **in the family-based (ASC trio) dataset** used for `fu_suppl_table5.xlsx`. These parameters are used in the **family-based TADA** and therefore affect :`BF_TADA_family`, `BF_TADA_CC` and `BF_TADA_RD`
 - `n_case`, `n_control`: number of individuals **in your case–control dataset** corresponding to the variant-level files you provide (or the simulator output). These parameters are used **only in the TADA-CC component**.
 
 ### How to set them for your data
