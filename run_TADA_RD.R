@@ -1,7 +1,7 @@
 
-# Original code : Haeun Moon (2025-06-25)
+# Original code : Haeun Moon (2026-02-03)
 
-require(dplyr); require(openxlsx); require(ebmc)
+require(dplyr); require(openxlsx); require(ebmc); 
 
 ### Change to working directory where the folder was cloned
 
@@ -46,7 +46,7 @@ case_var_com=left_join(case_var, data.frame(genetable_c$Gene_ID, genetable_c$LOE
 
 ### Infer de novo with ClassDn with a threshold 0.7
 
-load("data/ClassDn_underbagging.Rdata")
+load("data/ClassDn_rusboost.Rdata")
 PTV_ub=my_model
 case_var_com$pred_rb=predict(PTV_ub, case_var_com, type = "prob")
 
@@ -89,12 +89,12 @@ genetable$qval_TADA_CC=Bayesian.FDR(genetable$BF_TADA_CC, pi0 =1-0.06)
 genetable$qval_TADA_family=Bayesian.FDR(genetable$BF_TADA_family, pi0 =1-0.06)
 
 ##################################################
-### TADA_CC outcome calculation
+### TADA_RD outcome calculation
 ##################################################
 
 ### Load sensitivity and specificity
-load("data/accuracy_underbagging")
-w1= 0.335; w2=0.990
+load("data/accuracy_rusboost")
+w1= sim_result_1$w1[c*10] ; w2=sim_result_1$w2[c*10]
 
 genetable$BF_TADA_RD=genetable$BF_TADA_family*BF_RD_CC(genetable$ldn, genetable$lin, genetable$alpha_risk, genetable$alpha_nonrisk, genetable$beta_risk, genetable$beta_nonrisk, w1, w2)
 genetable$qval_TADA_RD=Bayesian.FDR(genetable$BF_TADA_RD, pi0 =1-0.06)
@@ -116,4 +116,9 @@ genetable_result%>%
   filter(qval_TADA_RD<0.05&qval_TADA_CC>0.05)%>%
   select(gene, proband_dn, proband_in, case, ldn, qval_TADA_CC, qval_TADA_RD)%>%
   mutate(qval_TADA_CC=round(qval_TADA_CC,3), qval_TADA_RD=round(qval_TADA_RD))
+
+
+write.csv(genetable_result,
+          file = "output/genetable_result.csv",
+          row.names = FALSE)
 
