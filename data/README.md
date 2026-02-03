@@ -1,61 +1,33 @@
-This repository contains code for simulating a **realistic case–control dataset** used to illustrate the **RD model pipeline**.
+## Data Description
 
-### Overview
+This directory contains data files used to implement and illustrate the **TADA-RD** method.
 
-The simulation generates **de novo** and **inherited protein-truncating variants (PTVs)** for **probands (cases)** and **siblings (controls)** under a realistic gene- and variant-level model.
+### Data required to run the TADA-RD method
 
-A detailed description of the simulation procedure is provided in:
+- **`genetable_info`**
+  Gene-level annotations and prior parameters required for TADA-family, TADA-CC, and TADA-RD analyses.
+- **`ClassDn_rusboost`**
+  A de novo–inference classifier trained on the SPARK family-based dataset using the RUSBoost algorithm.
+- **`ClassDn_underbagging`**
+  A de novo–inference classifier trained on the SPARK family-based dataset using the UnderBagging algorithm.
+- **`accuracy_rusboost`**
+  Sensitivity and specificity estimates for `ClassDn_rusboost` across probability thresholds.
+- **`accuracy_underbagging`**
+  Sensitivity and specificity estimates for `ClassDn_underbagging` across probability thresholds.
 
-> *“Realistic generation of proband–sibling data.docx”*
+*Note:* De novo inference is required **only for proband (case) data** in TADA-RD.
+Sibling (control) data are used **only for the TADA-CC component** and do not require de novo inference.
 
-### Required Input Files
+------
 
-#### Core inputs (required for proband/sibling simulations)
+### Example datasets provided
 
-- `gene-hg38-df-with-ccr.txt`
-  Gene-level annotations
-- `ptv-hg38-df-with-ccr.txt`
-  PTV-level variant annotations
+- **`fu_supplementary_table`**
+  An example family-based dataset from Supplementary Table 5 of Fu et al. (2022), containing published de novo and inherited PTV counts.
+- **`PROBANDS-simulated-ptv-variants`**
+  Simulated proband (case) PTV variants generated using the procedure implemented in the `realistic_data_generation/` folder.
+- **`SIBLINGS-simulated-ptv-variants`**
+  Simulated sibling (control) PTV variants generated using the procedure implemented in the `realistic_data_generation/` folder.
 
-#### Additional inputs for proband simulation
-
-- `denovo-signal-distribution.pdf`
-- `inherited-signal-distribution.pdf`
-
-### Simulation Modes
-
-The simulation is controlled via the `SUBSET` option.
-
-#### `SUBSET=PROBANDS`
-
-Generates a synthetic **proband (case)** dataset and outputs:
-
-1. `Probands-genes-with-signal.txt`
-   Gene-level information for signal genes
-2. `Probands-simulated-ptv-variants.txt`
-   Variant-level PTV data
-3. `Probands-simulated-ptv-variants-by-gene.txt`
-   Gene-level aggregated variant counts
-
-#### `SUBSET=SIBLINGS`
-
-Generates a synthetic **sibling (control)** dataset and outputs:
-
-1. `Siblings-simulated-ptv-variants.txt`
-   Variant-level PTV data
-2. `Siblings-simulated-ptv-variants-by-gene.txt`
-   Gene-level aggregated variant counts
-
-### Output Location
-
-All simulation outputs are saved to the `output/` directory.
-
-### Data Used for RD Analysis
-
-For demonstration of the RD procedure, **only the variant-level files** are used:
-
-- `Probands-simulated-ptv-variants.txt`
-- `Siblings-simulated-ptv-variants.txt`
-
-These files are copied into the `data/` directory for downstream RD analysis.
+------
 
