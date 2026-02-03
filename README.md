@@ -6,7 +6,7 @@ This repository provides a **reproducible analysis pipeline** for gene-level ris
 - **TADA-CC** 
 - **TADA-RD** 
 
-The pipeline integrates published family-based PTV counts, simulated or user-provided case–control variant data, and probabilistic inference of mutation origin. It is designed to demonstrate how **TADA-RD** improves discovery power while remaining compatible with standard TADA analyses.
+The pipeline integrates family-based PTV counts, simulated or user-provided case–control variant data and its probabilistic inference of mutation origin (de novo or inherited). It is designed to demonstrate how **TADA-RD** improves discovery power while remaining compatible with standard TADA analyses.
 
 ------
 
