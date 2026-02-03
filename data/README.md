@@ -1,14 +1,61 @@
-Data used to implement the TADA_RD method (Moon et al., 2025):
+This repository contains code for simulating a **realistic case–control dataset** used to illustrate the **RD model pipeline**.
 
-<data required to run the TADA_RD method>
-- genetable_info: Gene-level information required to run the TADA_RD method.
-- ClassDn_rusboost: A classifier trained using the SPARK family-based dataset with the RUSBoost algorithm.
-- ClassDn_underbagging: A classifier trained using the SPARK family-based dataset with the UnderBagging algorithm.
-- accuracy_rusboost: Sensitivity and specificity of ClassDn_rusboost at various threshold levels.
-- accuracy_underbagging: Sensitivity and specificity of ClassDn_underbagging at various threshold levels.
+### Overview
 
-<example datasets to run the TADA_RD method>
-- fu_supplementary_table: An example family-based dataset from the supplementary table 5 of Fu et al. (2022).
-- PROBANDS-simulated-ptv-variants: Simulated case data generated using the method described in Supplementary Material B of Moon et al. (2025).
-- SIBLINGS-simulated-ptv-variants: Simulated control data generated using the method described in Supplementary Material B of Moon et al. (2025).
+The simulation generates **de novo** and **inherited protein-truncating variants (PTVs)** for **probands (cases)** and **siblings (controls)** under a realistic gene- and variant-level model.
+
+A detailed description of the simulation procedure is provided in:
+
+> *“Realistic generation of proband–sibling data.docx”*
+
+### Required Input Files
+
+#### Core inputs (required for proband/sibling simulations)
+
+- `gene-hg38-df-with-ccr.txt`
+  Gene-level annotations
+- `ptv-hg38-df-with-ccr.txt`
+  PTV-level variant annotations
+
+#### Additional inputs for proband simulation
+
+- `denovo-signal-distribution.pdf`
+- `inherited-signal-distribution.pdf`
+
+### Simulation Modes
+
+The simulation is controlled via the `SUBSET` option.
+
+#### `SUBSET=PROBANDS`
+
+Generates a synthetic **proband (case)** dataset and outputs:
+
+1. `Probands-genes-with-signal.txt`
+   Gene-level information for signal genes
+2. `Probands-simulated-ptv-variants.txt`
+   Variant-level PTV data
+3. `Probands-simulated-ptv-variants-by-gene.txt`
+   Gene-level aggregated variant counts
+
+#### `SUBSET=SIBLINGS`
+
+Generates a synthetic **sibling (control)** dataset and outputs:
+
+1. `Siblings-simulated-ptv-variants.txt`
+   Variant-level PTV data
+2. `Siblings-simulated-ptv-variants-by-gene.txt`
+   Gene-level aggregated variant counts
+
+### Output Location
+
+All simulation outputs are saved to the `output/` directory.
+
+### Data Used for RD Analysis
+
+For demonstration of the RD procedure, **only the variant-level files** are used:
+
+- `Probands-simulated-ptv-variants.txt`
+- `Siblings-simulated-ptv-variants.txt`
+
+These files are copied into the `data/` directory for downstream RD analysis.
 
